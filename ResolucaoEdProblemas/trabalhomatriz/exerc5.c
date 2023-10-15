@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <conio.h>
 
-#define TL 4
-#define TC 4
+#define TL 3
+#define TC 3
 
-/*3.	Leia uma matriz 4 x 4, imprima a matriz e retorne a localização (linha e a coluna) do maior valor.*/
+/*5.	Leia uma matriz de 3 x 3 elementos. Calcule a média dos elementos que estão na diagonal principal.*/
 
 void define(int mt[TL][TC]){
 	int i, j;
@@ -16,42 +16,44 @@ void define(int mt[TL][TC]){
 		}
 	}
 }
-void exibir(int mt[TL][TC]){
+
+void exibir(int c[TL][TC]){
 	int i, j;
 	
 	for(i = 0; i < TL; i++){
 		for(j = 0; j < TC; j++){
-			printf("%d |", mt[i][j]);
+			printf("%d |", c[i][j]);
 		}
 		printf("\n");
 	}
 }
 
-void maior(int mt[TL][TC]){
-	int i, j, m, l, c;
-	
+
+void diagonal(int mt[TL][TC]){
+	int i, j, s, m, cont;
+
 	for(i = 0; i < TL; i++){
 		for(j = 0; j < TC; j++){
 			if(i == 0 && j == 0){
-				m = mt[i][j];
-				l = i;
-				c = j;
+				s = 0;
+				cont = 0;
 			}
-			if(mt[i][j] > m){
-				m = mt[i][j];
-				l = i;
-				c = j;
+			if(i == j){
+				s += mt[i][j];
+				cont++;
 			}
 		}
 	}
-	printf("maior: matriz[%d][%d]: %d", l, c, m);
+	m = s / cont;
+	printf("media diagonal: %d", m);
 }
+
 
 
 void main(){
 	int mt[TL][TC];
-	
+
 	define(mt);
 	exibir(mt);
-	maior(mt);
+	diagonal(mt);
 }
